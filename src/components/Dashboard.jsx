@@ -1,38 +1,47 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
-export class Dashboard extends Component {
+class Dashboard extends Component {
+  state = {
+    activities: [
+      { activity: 'Logged in', date: 'May 5, 2024', user: 'John Doe' },
+      { activity: 'Updated profile', date: 'May 6, 2024', user: 'Jane Smith' },
+      { activity: 'Logged out', date: 'May 7, 2024', user: 'James Blue' },
+      { activity: 'Changed Profile', date: 'May 7, 2024', user: 'Justin Smith' },
+      // Add more activities as needed
+    ]
+  };
+
   render() {
+    const { activities } = this.state;
+
     return (
-        <main className="flex-1 bg-gray-100 p-8">
-            <h2 className="text-2xl font-semibold mb-4">Dashboard</h2>
-            <div className="container mx-auto">
-              <h1 className="text-3xl font-bold mb-4">Sample Table</h1>
-              <table className="min-w-full">
-                <thead>
-                  <tr>
-                    <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">ID</th>
-                    <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Name</th>
-                    <th className="px-6 py-3 border-b-2 border-gray-300 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">Email</th>
+      <main className="flex-1 bg-gray-900 p-8">
+        <div className="max-w-4xl mx-auto bg-blue rounded-lg shadow-md p-8">
+          <h2 className="text-3xl font-semibold mb-4">Dashboard</h2>
+          <div className="overflow-x-auto">
+            <table className="min-w-full divide-y divide-white">
+              <thead className="bg-gray-900">
+                <tr>
+                  <th className="px-6 py-3 text-left text-sm font-semibold text-white-600 uppercase tracking-wider">Activity</th>
+                  <th className="px-6 py-3 text-left text-sm font-semibold text-white-600 uppercase tracking-wider">Date</th>
+                  <th className="px-6 py-3 text-left text-sm font-semibold text-white-600 uppercase tracking-wider">User</th>
+                </tr>
+              </thead>
+              <tbody className="bg-blue divide-y divide-white-900">
+                {activities.map((activity, index) => (
+                  <tr key={index} className={index % 2 === 0 ? 'bg-gray-900' : 'bg-gray-900'}>
+                    <td className="px-6 py-4 whitespace-nowrap">{activity.activity}</td>
+                    <td className="px-6 py-4 whitespace-nowrap">{activity.date}</td>
+                    <td className="px-6 py-4 whitespace-nowrap">{activity.user}</td>
                   </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td className="px-6 py-4 whitespace-nowrap border-b border-gray-300">1</td>
-                    <td className="px-6 py-4 whitespace-nowrap border-b border-gray-300">John Doe</td>
-                    <td className="px-6 py-4 whitespace-nowrap border-b border-gray-300">john.doe@example.com</td>
-                  </tr>
-                  <tr>
-                    <td className="px-6 py-4 whitespace-nowrap border-b border-gray-300">2</td>
-                    <td className="px-6 py-4 whitespace-nowrap border-b border-gray-300">Jane Smith</td>
-                    <td className="px-6 py-4 whitespace-nowrap border-b border-gray-300">jane.smith@example.com</td>
-                  </tr>
-                  {/* Add more rows as needed */}
-                </tbody>
-              </table>
-            </div>
-        </main>
-    )
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    );
   }
 }
 
-export default Dashboard
+export default Dashboard;

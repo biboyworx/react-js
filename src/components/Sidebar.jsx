@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 
 function Sidebar() {
     const location = useLocation();
-    const activeClass = 'rounded-md bg-gray-600 text-white p-2';
+    const activeClass = 'rounded-md bg-white text-white p-2';
 
     const NavLinkFunction = () => {
         const sideBarArray = new Map([
@@ -15,29 +15,31 @@ function Sidebar() {
         
   
         return (
-                <ul>
+            <ul>
                 {[...sideBarArray].map(([key, value]) => (
-                  <li key={value} className="mb-2">
-                    <NavLink
-                      exact= "true"
-                      to={value}
-                      className={`text-blue-500 ${location.pathname === value ? activeClass : ''}`}
-                    >
-                      {key}
-                    </NavLink>
-                  </li>
+                    <li key={value} className="mb-2">
+                        <NavLink
+                            exact= "true"
+                            to={value}
+                            className={`block text-sm font-medium hover:text-black focus:outline-none focus:text-black ${location.pathname === value ? activeClass : ''}`}
+                            activeClassName={activeClass}
+                        >
+                            {key}
+                        </NavLink>
+                    </li>
                 ))}
-              </ul>
-          
+            </ul>
         );
-     }
+    }
      
     return (
-      <aside className="bg-gray-200 w-64 px-4 py-8">
-        <h2 className="text-lg font-semibold mb-4">Sidebar</h2>
-        {NavLinkFunction()}
-      </aside>
+        <aside className="bg-cyan-900 w-64 h-full flex flex-col justify-between">
+            <div className="px-4 py-8">
+                {NavLinkFunction()}
+            </div>
+            <div className="px-4 py-4 text-white text-sm text-center">LeZunshayn™</div>
+        </aside>
     );
-  }
+}
   
-export default Sidebar
+export default Sidebar;
